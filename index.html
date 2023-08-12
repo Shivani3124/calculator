@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+     
+    <title>Document</title>
+    <style>
+        .container{
+            border: 1px solid black;
+            height: 500px;
+            width: 340px;
+            margin-top: 50px;
+            border-radius: 20px;
+            box-shadow: 5px 5px 3px rgb(68, 60, 60);
+            /* background-color:rgb(72, 103, 116); */
+            margin-left: 500px;
+           background-image: linear-gradient(rgb(75, 67, 122),rgb(73, 13, 46));
+        }
+        body{
+            background-color: lightslategray;
+        }
+        h4{
+            color: black;
+            margin-left: 90px;
+            padding-top: 20px;
+            font-size: 23px;
+        }
+      .form{
+        margin-top: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
+        height: 40px;
+      }
+     .button{
+        width: 50px;
+        margin-left: 20px;
+        font-size: 16px;
+        /* border-radius: 10px; */
+        border-color: rgb(92, 52, 52) ;
+        padding: 10px;
+        box-shadow: 5px 5px 5px black;
+     }                 
+      .operator{
+        background-color: rgb(56, 10, 56);
+        color: white;
+        border-color: rgb(71, 11, 73);
+        opacity: 0.5;
+      }
+      .name{
+        background-color: brown;
+        color: white;
+        border-color: brown;
+      }
+   .display{
+background-image: linear-gradient(rgb(81, 90, 99),rgb(179, 201, 189));
+        padding:   10px 50px ;
+        margin-left: 20px;
+      }
+      .number{
+        background-color: rgb(181, 199, 199);
+        opacity: 0.5;
+        color: black;
+      }
+
+      @media screen and (min-width:300px) and (max-width:504px) {
+        .container{
+            border: 1px solid black;
+            height: 500px;
+            width: 340px;
+            margin-top: 50px;
+            border-radius: 20px;
+            box-shadow: 5px 5px 3px rgb(68, 60, 60);
+            /* background-color:rgb(72, 103, 116); */
+            margin-left: -500px;
+           background-image: linear-gradient(rgb(75, 67, 122),rgb(73, 13, 46));
+        }
+        body{
+            background-color: lightslategray;
+        }
+        h4{
+            color: black;
+            margin-left: 90px;
+            padding-top: 20px;
+            font-size: 23px;
+        }
+      .form{
+        margin-top: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
+        height: 40px;
+      }
+     .button{
+        width: 50px;
+        margin-left: 20px;
+        font-size: 16px;
+        /* border-radius: 10px; */
+        border-color: rgb(92, 52, 52) ;
+        padding: 10px;
+        box-shadow: 5px 5px 5px black;
+     }                 
+      .operator{
+        background-color: rgb(56, 10, 56);
+        color: white;
+        border-color: rgb(71, 11, 73);
+        opacity: 0.5;
+      }
+      .name{
+        background-color: brown;
+        color: white;
+        border-color: brown;
+      }
+   .display{
+background-image: linear-gradient(rgb(81, 90, 99),rgb(179, 201, 189));
+        padding:   10px 50px ;
+        margin-left: 20px;
+      }
+      .number{
+        background-color: rgb(181, 199, 199);
+        opacity: 0.5;
+        color: black;
+      }
+      }
+    </style>
+</head>
+<body>
+
+    <form>
+        <div class="container">
+           <h4>CALCULATOR</h4>
+          <div class="form">
+              <form action="#" name="calculator" class="main">
+                  <input type="text" class="display form-control" name="display" id="display"><br><br>
+                     <button class="button operator"  value="AC">AC</button>
+                     <button class="button operator"  value="%">%</button>
+                     <button class="button operator"  value="&gt;">&lt;</button>
+                     <button class="button operator"  value="/">/</button><br><br>
+                     <button class="button number"  value="7">7</button>
+                     <button class="button number"  value="8">8</button>
+                     <button class="button number"  value="9">9</button>
+                     <button class="button operator"  value="">*</button><br><br>
+                     <button class="button number"  value="4">4</button>
+                     <button class="button number"  value="5">5</button>
+                     <button class="button number"  value="6">6</button>
+                     <button class="button operator"  value="-">-</button><br><br>
+                     <button class="button number"  value="1">1</button>
+                     <button class="button number"  value="2">2</button>
+                     <button class="button number"  value="3">3</button>
+                     <button class="button operator"  value="+">+</button><br><br>
+                     <button class="button number"  value="+/-">+/-</button>
+                     <button class="button number"  value="0">0</button>
+                     <button class="button number"  value=".">00</button>
+                     <button class="button name"  value="=">=</button>
+                </form>
+          </div>
+        </div>
+        
+    </form>
+</body>
+</html>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const display = document.getElementById('display');
+    const buttons = document.querySelectorAll('.button');
+
+    let currentInput = '';
+
+    function handleNumberClick(value) {
+      if (value === '+' || value === '-' || value === '*' || value === '/') {
+        if (currentInput === '') return;
+        currentInput += ' ' + value + ' ';
+      } else {
+        currentInput += value;
+      }
+      display.value = currentInput;
+    }
+
+    function handleEqualClick() {
+      try {
+        const result = eval(currentInput);
+        currentInput = result.toString();
+        display.value = currentInput;
+      } catch (error) {
+        display.value = 'Error';
+      }
+    }
+
+    function clearCalculator() {
+      currentInput = '';
+      display.value = '';
+    }
+
+    buttons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const value = button.textContent;
+        if (value === '=') {
+          handleEqualClick();
+        } else if (value === 'AC') {
+          clearCalculator();
+        } else {
+          handleNumberClick(value);
+        }
+      });
+    });
+  });
+</script>
